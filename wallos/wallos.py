@@ -58,7 +58,7 @@ class Wallos(BasePlugin):
     def _fetch_subscriptions(self, host, api_key, max_items):
         session = get_http_session()
         try:
-            url = f"{host}/api/subscriptions?apiKey={api_key}&sort=next_payment&state=0"
+            url = f"{host}/api/subscriptions/?apiKey={api_key}&sort=next_payment&state=0"
             resp = session.get(url, timeout=10)
             resp.raise_for_status()
             data = resp.json()
@@ -99,7 +99,7 @@ class Wallos(BasePlugin):
         session = get_http_session()
         today = date.today()
         try:
-            url = f"{host}/api/getmonthlycost?apiKey={api_key}&month={today.month}&year={today.year}"
+            url = f"{host}/api/getmonthlycost/?apiKey={api_key}&month={today.month}&year={today.year}"
             resp = session.get(url, timeout=10)
             resp.raise_for_status()
             data = resp.json()
