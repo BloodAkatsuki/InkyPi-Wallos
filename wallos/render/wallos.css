@@ -95,7 +95,7 @@
 
 .sub-name {
     flex: 1;
-    font-size: min(2.8dvh, 2.8dvw);
+    font-size: min(3.6dvh, 3.6dvw);
     font-weight: 500;
     overflow: hidden;
     white-space: nowrap;
@@ -103,7 +103,7 @@
 }
 
 .sub-due {
-    font-size: min(2.2dvh, 2.2dvw);
+    font-size: min(3dvh, 3dvw);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     opacity: 0.6;
@@ -142,7 +142,7 @@
 }
 
 .chart-price {
-    font-size: min(2.4dvh, 2.4dvw);
+    font-size: min(3dvh, 3dvw);
     font-weight: bold;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
