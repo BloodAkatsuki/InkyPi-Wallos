@@ -85,9 +85,6 @@
     padding: 0.4dvh 0;
 }
 
-.sub-row:last-child {
-    border-bottom: none;
-}
 
 .sub-name {
     font-size: min(3.2dvh, 3.2dvw);
