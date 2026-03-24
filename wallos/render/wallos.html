@@ -1,0 +1,52 @@
+{% extends "plugin.html" %}
+
+{% block content %}
+<style>
+:root {
+    --color-due-soon: {{ color_due_soon }};
+    --color-due-week: {{ color_due_week }};
+}
+</style>
+<div class="wallos-dashboard">
+
+    <!-- Header: Titel + Monatskosten -->
+    <div class="wallos-header">
+        <span class="wallos-title">Wallos</span>
+        {% if show_monthly_cost and monthly_cost is not none %}
+            <span class="wallos-cost">~ {{ "%.2f"|format(monthly_cost) }} {{ currency_symbol }} / Monat</span>
+        {% endif %}
+    </div>
+
+    <!-- Abonnementliste -->
+    <div class="wallos-list">
+        {% for sub in subscriptions %}
+        <div class="sub-row">
+            <span class="sub-name">
+                {% if show_logos and sub.logo %}
+                    <img class="sub-logo" src="{{ sub.logo }}" alt="">
+                {% endif %}
+                {{ sub.name }}
+            </span>
+            <span class="sub-price">{{ "%.2f"|format(sub.price) }} {{ sub.currency }}</span>
+            <span class="sub-due
+                {%- if sub.days_until is not none and sub.days_until <= 3 %} due-soon
+                {%- elif sub.days_until is not none and sub.days_until <= 7 %} due-week
+                {%- endif %}">
+                {% if sub.days_until is none %}
+                    –
+                {% elif sub.days_until == 0 %}
+                    heute
+                {% elif sub.days_until == 1 %}
+                    morgen
+                {% else %}
+                    in {{ sub.days_until }} Tagen
+                {% endif %}
+            </span>
+        </div>
+        {% else %}
+        <div class="sub-empty">Keine aktiven Abonnements gefunden.</div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

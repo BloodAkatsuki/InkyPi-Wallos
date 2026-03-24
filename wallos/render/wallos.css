@@ -1,0 +1,109 @@
+.wallos-dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: "Jost";
+    padding: 2dvh 3dvw;
+    gap: 1.5dvh;
+    box-sizing: border-box;
+}
+
+/* ── Header ── */
+.wallos-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2dvw;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 1dvh;
+    flex-shrink: 0;
+}
+
+.wallos-title {
+    font-size: min(4dvh, 4dvw);
+    font-weight: bold;
+    letter-spacing: 0.03em;
+}
+
+.wallos-cost {
+    font-size: min(2.5dvh, 2.5dvw);
+    opacity: 0.65;
+    margin-left: auto;
+}
+
+/* ── Subscription list ── */
+.wallos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6dvh;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sub-row {
+    display: flex;
+    align-items: center;
+    gap: 2dvw;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom: 0.6dvh;
+    font-size: min(2.8dvh, 2.8dvw);
+}
+
+.sub-name {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1dvw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+.sub-logo {
+    width: min(3dvh, 3dvw);
+    height: min(3dvh, 3dvw);
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.sub-price {
+    white-space: nowrap;
+    opacity: 0.85;
+    font-variant-numeric: tabular-nums;
+}
+
+.sub-due {
+    white-space: nowrap;
+    font-size: min(2.4dvh, 2.4dvw);
+    opacity: 0.65;
+    text-align: right;
+    min-width: 8dvw;
+}
+
+.due-soon {
+    color: var(--color-due-soon);
+    opacity: 1;
+    font-weight: bold;
+}
+
+.due-week {
+    color: var(--color-due-week);
+    opacity: 1;
+    font-weight: 600;
+}
+
+.sub-empty {
+    font-size: min(2.5dvh, 2.5dvw);
+    opacity: 0.55;
+    margin-top: 2dvh;
+    text-align: center;
+}
+
+/* ── Portrait layout ── */
+@media (max-aspect-ratio: 1) {
+    .wallos-title  { font-size: min(5dvh, 5dvw); }
+    .wallos-cost   { font-size: min(3dvh, 3dvw); }
+    .sub-row       { font-size: min(3.5dvh, 3.5dvw); gap: 3dvw; }
+    .sub-due       { font-size: min(3dvh, 3dvw); }
+}

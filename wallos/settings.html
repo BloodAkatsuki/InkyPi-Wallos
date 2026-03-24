@@ -1,0 +1,71 @@
+<div class="form-group">
+    <label for="host" class="form-label">Wallos URL</label>
+    <input type="text" id="host" name="host" placeholder="http://192.168.1.100:8282" class="form-input">
+</div>
+
+<div class="form-group">
+    <label for="api_key" class="form-label">API Key</label>
+    <input type="password" id="api_key" name="api_key" class="form-input" autocomplete="off">
+</div>
+
+<div class="form-group">
+    <label for="max_items" class="form-label">Anzahl Abonnements</label>
+    <select id="max_items" name="max_items" class="form-input">
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5" selected>5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+</div>
+
+<hr>
+
+<div class="form-group">
+    <label class="form-label">Anzeigeoptionen</label>
+    <div class="checkbox-group">
+        <label><input type="checkbox" name="show_monthly_cost" value="true"> Monatskosten anzeigen</label>
+        <label><input type="checkbox" name="show_logos" value="true"> Logos anzeigen</label>
+    </div>
+</div>
+
+<hr>
+
+<div class="form-group">
+    <label class="form-label">Fälligkeitsfarben</label>
+    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="color" id="color_due_soon" name="color_due_soon" value="#c62828">
+            <label for="color_due_soon" style="margin: 0;">Fällig in ≤ 3 Tagen</label>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="color" id="color_due_week" name="color_due_week" value="#e65100">
+            <label for="color_due_week" style="margin: 0;">Fällig in ≤ 7 Tagen</label>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (loadPluginSettings) {
+            document.getElementById('host').value = pluginSettings.host || '';
+            document.getElementById('api_key').value = pluginSettings.api_key || '';
+
+            const maxItems = document.getElementById('max_items');
+            if (pluginSettings.max_items) maxItems.value = pluginSettings.max_items;
+
+            document.getElementById('color_due_soon').value = pluginSettings.color_due_soon || '#c62828';
+            document.getElementById('color_due_week').value = pluginSettings.color_due_week || '#e65100';
+
+            ['show_monthly_cost', 'show_logos'].forEach(key => {
+                const cb = document.querySelector(`input[name="${key}"]`);
+                if (cb) cb.checked = pluginSettings[key] !== 'false';
+            });
+        } else {
+            document.querySelectorAll('.checkbox-group input[type="checkbox"]').forEach(cb => cb.checked = true);
+        }
+    });
+</script>
