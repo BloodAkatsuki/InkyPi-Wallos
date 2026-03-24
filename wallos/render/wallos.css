@@ -60,10 +60,10 @@
 
 .summary-chart-hint {
     margin-left: auto;
-    font-size: min(2dvh, 2dvw);
+    font-size: min(2.2dvh, 2.2dvw);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    opacity: 0.7;
+    font-weight: 600;
 }
 
 /* ── List ── */
@@ -89,7 +89,7 @@
     height: 100%;
 }
 
-.sub-row + .sub-row {
+.sub-row + .sub-row .sub-left {
     border-top: 1px solid currentColor;
 }
 
