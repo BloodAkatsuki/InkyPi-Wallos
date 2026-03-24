@@ -146,6 +146,8 @@
     align-items: center;
     gap: 1.5dvw;
     flex: 1;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.9;
 }
 
 .chart-bar-wrap {
