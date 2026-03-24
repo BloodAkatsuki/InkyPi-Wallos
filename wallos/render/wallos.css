@@ -5,8 +5,8 @@
     height: 100%;
     font-family: "Jost";
     padding: 2dvh 3dvw;
-    gap: 0;
     box-sizing: border-box;
+    gap: 0;
 }
 
 /* ── Header ── */
@@ -28,7 +28,7 @@
 .wallos-summary {
     display: flex;
     gap: 5dvw;
-    padding: 1.5dvh 0 1.5dvh 0;
+    padding: 1.2dvh 0;
     border-bottom: 1px solid currentColor;
     flex-shrink: 0;
 }
@@ -39,34 +39,43 @@
 }
 
 .summary-value {
-    font-size: min(5dvh, 5dvw);
+    font-size: min(4.5dvh, 4.5dvw);
     font-weight: bold;
     line-height: 1;
 }
 
 .summary-label {
-    font-size: min(1.8dvh, 1.8dvw);
+    font-size: min(1.6dvh, 1.6dvw);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     opacity: 0.5;
     margin-top: 0.3dvh;
 }
 
-/* ── Subscription list ── */
-.wallos-list {
+/* ── Body ── */
+.wallos-body {
+    display: flex;
+    gap: 3dvw;
+    flex: 1;
+    overflow: hidden;
+    padding-top: 1dvh;
+}
+
+/* ── Left: List ── */
+.wallos-left {
     display: flex;
     flex-direction: column;
-    flex: 1;
     justify-content: space-around;
-    padding-top: 0.5dvh;
+    flex: 1;
+    overflow: hidden;
 }
 
 .sub-row {
     display: flex;
     align-items: center;
-    gap: 2dvw;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0.5dvh 0;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 0.4dvh 0;
 }
 
 .sub-row:last-child {
@@ -74,42 +83,22 @@
 }
 
 .sub-name {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 1.2dvw;
     font-size: min(2.8dvh, 2.8dvw);
     font-weight: 500;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
-
-.sub-logo {
-    width: min(3.5dvh, 3.5dvw);
-    height: min(3.5dvh, 3.5dvw);
-    object-fit: contain;
-    flex-shrink: 0;
-    border-radius: 3px;
-}
-
-.sub-price {
-    font-size: min(2.8dvh, 2.8dvw);
-    font-weight: bold;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-    min-width: 9dvw;
-    text-align: right;
+    flex: 1;
 }
 
 .sub-due {
     font-size: min(2.2dvh, 2.2dvw);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     opacity: 0.5;
     white-space: nowrap;
-    min-width: 11dvw;
-    text-align: right;
+    margin-left: 2dvw;
+    flex-shrink: 0;
 }
 
 .due-soon {
@@ -127,15 +116,77 @@
 .sub-empty {
     font-size: min(2.5dvh, 2.5dvw);
     opacity: 0.5;
-    text-align: center;
+}
+
+/* ── Right: Cost chart ── */
+.wallos-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8dvh;
+    width: 38%;
+    flex-shrink: 0;
+}
+
+.chart-title {
+    font-size: min(1.8dvh, 1.8dvw);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.cost-chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
+    gap: 0;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5dvw;
+    flex: 1;
+}
+
+.chart-bar-wrap {
+    flex: 1;
+    height: 0.9dvh;
+    background: rgba(0,0,0,0.1);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.chart-bar {
+    height: 100%;
+    background: currentColor;
+    border-radius: 999px;
+    opacity: 0.75;
+    min-width: 2px;
+}
+
+.chart-price {
+    font-size: min(2.2dvh, 2.2dvw);
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 9dvw;
+    text-align: right;
+    flex-shrink: 0;
 }
 
 /* ── Portrait layout ── */
 @media (max-aspect-ratio: 1) {
+    .wallos-body {
+        flex-direction: column;
+    }
+    .wallos-right {
+        width: 100%;
+        height: 30%;
+    }
     .summary-value { font-size: min(6dvh, 6dvw); }
-    .summary-label { font-size: min(2.5dvh, 2.5dvw); }
     .sub-name      { font-size: min(3.5dvh, 3.5dvw); }
-    .sub-price     { font-size: min(3.5dvh, 3.5dvw); min-width: 14dvw; }
-    .sub-due       { font-size: min(3dvh, 3dvw); min-width: 16dvw; }
-    .sub-logo      { width: min(4.5dvh, 4.5dvw); height: min(4.5dvh, 4.5dvw); }
+    .sub-due       { font-size: min(3dvh, 3dvw); }
+    .chart-price   { font-size: min(3dvh, 3dvw); }
 }
