@@ -58,7 +58,7 @@ class Wallos(BasePlugin):
     def _fetch_subscriptions(self, host, api_key, max_items):
         session = get_http_session()
         try:
-            url = f"{host}/api/subscriptions/?apiKey={api_key}&sort=next_payment&state=0"
+            url = f"{host}/api/subscriptions/get_subscriptions.php?apiKey={api_key}&sort=next_payment&state=0"
             resp = session.get(url, timeout=10)
             resp.raise_for_status()
             data = resp.json()
@@ -71,9 +71,9 @@ class Wallos(BasePlugin):
         today = date.today()
         subscriptions = []
         for sub in raw_subs:
-            if sub.get("inactive"):
+            if sub.get("inactive") == 1:
                 continue
-            billing_date_str = sub.get("next_billing_date", "")
+            billing_date_str = sub.get("next_payment", "")
             try:
                 billing_date = date.fromisoformat(billing_date_str)
                 days_until = (billing_date - today).days
@@ -81,15 +81,15 @@ class Wallos(BasePlugin):
                 billing_date = None
                 days_until = None
 
+            logo = sub.get("logo", "")
+            logo_url = f"{host}/images/uploads/logos/{logo}" if logo else ""
+
             subscriptions.append({
                 "name": sub.get("name", ""),
                 "price": sub.get("price", 0),
-                "currency": sub.get("currency", ""),
-                "next_billing_date": billing_date_str,
+                "next_payment": billing_date_str,
                 "days_until": days_until,
-                "logo": sub.get("logo", ""),
-                "billing_cycle": sub.get("billing_cycle", ""),
-                "billing_cycle_multiplier": sub.get("billing_cycle_multiplier", 1),
+                "logo_url": logo_url,
             })
 
         subscriptions.sort(key=lambda s: s["days_until"] if s["days_until"] is not None else 9999)
@@ -99,7 +99,7 @@ class Wallos(BasePlugin):
         session = get_http_session()
         today = date.today()
         try:
-            url = f"{host}/api/getmonthlycost/?apiKey={api_key}&month={today.month}&year={today.year}"
+            url = f"{host}/api/subscriptions/get_monthly_cost.php?apiKey={api_key}&month={today.month}&year={today.year}"
             resp = session.get(url, timeout=10)
             resp.raise_for_status()
             data = resp.json()
