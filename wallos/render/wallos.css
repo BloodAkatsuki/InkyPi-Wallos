@@ -71,13 +71,13 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    justify-content: space-around;
 }
 
 .sub-row {
     display: flex;
     align-items: center;
     gap: 2dvw;
+    flex: 1;
 }
 
 .sub-left {
@@ -86,10 +86,10 @@
     gap: 2dvw;
     flex: 1;
     overflow: hidden;
-    padding: 0.4dvh 0;
+    height: 100%;
 }
 
-.sub-row + .sub-row .sub-left {
+.sub-row + .sub-row {
     border-top: 1px solid currentColor;
 }
 
