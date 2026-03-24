@@ -9,12 +9,10 @@
 </style>
 <div class="wallos-dashboard">
 
-    <!-- Header -->
     <div class="wallos-header">
         <span class="wallos-title">Wallos</span>
     </div>
 
-    <!-- Summary -->
     {% if show_monthly_cost and monthly_cost is not none %}
     <div class="wallos-summary">
         <div class="summary-block">
@@ -30,47 +28,29 @@
     </div>
     {% endif %}
 
-    <!-- Body -->
-    <div class="wallos-body">
-
-        <!-- Left: Subscription list -->
-        <div class="wallos-left">
-            {% for sub in subscriptions %}
-            <div class="sub-row">
-                <span class="sub-name">{{ sub.name }}</span>
-                <span class="sub-due
-                    {%- if sub.days_until is not none and sub.days_until <= 3 %} due-soon
-                    {%- elif sub.days_until is not none and sub.days_until <= 7 %} due-week
-                    {%- endif %}">
-                    {% if sub.days_until is none %}–
-                    {% elif sub.days_until == 0 %}Heute
-                    {% elif sub.days_until == 1 %}Morgen
-                    {% else %}{{ sub.days_until }}d
-                    {% endif %}
-                </span>
+    <div class="wallos-list">
+        {% set max_price = subscriptions | map(attribute='price') | max | default(1) %}
+        {% for sub in subscriptions %}
+        <div class="sub-row">
+            <span class="sub-name">{{ sub.name }}</span>
+            <span class="sub-due
+                {%- if sub.days_until is not none and sub.days_until <= 3 %} due-soon
+                {%- elif sub.days_until is not none and sub.days_until <= 7 %} due-week
+                {%- endif %}">
+                {%- if sub.days_until is none %}–
+                {%- elif sub.days_until == 0 %}Heute
+                {%- elif sub.days_until == 1 %}Morgen
+                {%- else %}{{ sub.days_until }}D
+                {%- endif %}
+            </span>
+            <div class="chart-bar-outer">
+                <div class="chart-bar-bg"></div>
+                <div class="chart-bar-fill" style="width: {{ [(sub.price / max_price * 100)|round, 2]|max }}%"></div>
             </div>
-            {% else %}
-            <div class="sub-empty">Keine aktiven Abonnements.</div>
-            {% endfor %}
+            <span class="chart-price">{{ currency_symbol }}{{ "%.2f"|format(sub.price) }}</span>
         </div>
-
-        <!-- Right: Cost chart -->
-        <div class="wallos-right">
-            <div class="chart-title">Kosten pro Abo</div>
-            <div class="cost-chart">
-                {% set max_price = subscriptions | map(attribute='price') | max | default(1) %}
-                {% for sub in subscriptions %}
-                <div class="chart-row">
-                    <div class="chart-bar-outer">
-                        <div class="chart-bar-bg"></div>
-                        <div class="chart-bar-fill" style="width: {{ [(sub.price / max_price * 100)|round, 2]|max }}%"></div>
-                    </div>
-                    <span class="chart-price">{{ currency_symbol }}{{ "%.2f"|format(sub.price) }}</span>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
+        {% endfor %}
     </div>
+
 </div>
 {% endblock %}
