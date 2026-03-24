@@ -59,8 +59,9 @@
                 {% set max_price = subscriptions | map(attribute='price') | max | default(1) %}
                 {% for sub in subscriptions %}
                 <div class="chart-row">
-                    <div class="chart-bar-wrap">
-                        <div class="chart-bar" style="width: {{ [(sub.price / max_price * 100)|round, 2]|max }}%"></div>
+                    <div class="chart-bar-outer">
+                        <div class="chart-bar-bg"></div>
+                        <div class="chart-bar-fill" style="width: {{ [(sub.price / max_price * 100)|round, 2]|max }}%"></div>
                     </div>
                     <span class="chart-price">{{ currency_symbol }}{{ "%.2f"|format(sub.price) }}</span>
                 </div>
