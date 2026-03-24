@@ -35,7 +35,8 @@
 
 .summary-block {
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+    gap: 0.8dvw;
 }
 
 .summary-value {
@@ -47,9 +48,14 @@
 .summary-label {
     font-size: min(2dvh, 2dvw);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     opacity: 0.6;
-    margin-top: 0.3dvh;
+}
+
+.summary-divider {
+    font-size: min(4dvh, 4dvw);
+    opacity: 0.3;
+    align-self: center;
 }
 
 /* ── Body ── */

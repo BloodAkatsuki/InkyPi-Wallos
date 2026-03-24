@@ -19,8 +19,9 @@
     <div class="wallos-summary">
         <div class="summary-block">
             <span class="summary-value">{{ monthly_cost }}</span>
-            <span class="summary-label">Monatliche Kosten</span>
+            <span class="summary-label">/ Monat</span>
         </div>
+        <div class="summary-divider">·</div>
         <div class="summary-block">
             <span class="summary-value">{{ subscriptions | length }}</span>
             <span class="summary-label">Abonnements</span>
@@ -54,7 +55,7 @@
 
         <!-- Right: Cost chart -->
         <div class="wallos-right">
-            <div class="chart-title">Kosten / Monat</div>
+            <div class="chart-title">Kosten pro Abo</div>
             <div class="cost-chart">
                 {% set max_price = subscriptions | map(attribute='price') | max | default(1) %}
                 {% for sub in subscriptions %}
