@@ -46,18 +46,18 @@
 }
 
 .summary-label {
-    font-size: min(2dvh, 2dvw);
+    font-size: min(2.2dvh, 2.2dvw);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    opacity: 0.6;
+    font-weight: 600;
 }
 
 .summary-chart-hint {
     margin-left: auto;
-    font-size: min(1.6dvh, 1.6dvw);
+    font-size: min(2dvh, 2dvw);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    opacity: 0.4;
+    opacity: 0.7;
     align-self: center;
 }
 
@@ -89,9 +89,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid currentColor;
-    opacity: 0.9;
     padding: 0.4dvh 0;
+}
+
+.sub-row + .sub-row {
+    border-top: 1px solid currentColor;
 }
 
 
@@ -150,11 +152,10 @@
     align-items: center;
     gap: 1.5dvw;
     flex: 1;
-    border-bottom: 1px solid currentColor;
 }
 
-.chart-row:last-child {
-    border-bottom: none;
+.chart-row + .chart-row {
+    border-top: 1px solid currentColor;
 }
 
 .chart-bar-wrap {
