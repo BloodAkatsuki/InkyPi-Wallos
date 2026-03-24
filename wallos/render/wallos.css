@@ -7,6 +7,9 @@
     padding: 2dvh 3dvw;
     box-sizing: border-box;
     gap: 0;
+    -webkit-font-smoothing: none;
+    font-smooth: never;
+    text-rendering: geometricPrecision;
 }
 
 /* ── Header ── */
