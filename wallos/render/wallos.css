@@ -52,6 +52,15 @@
     opacity: 0.6;
 }
 
+.summary-chart-hint {
+    margin-left: auto;
+    font-size: min(1.6dvh, 1.6dvw);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.4;
+    align-self: center;
+}
+
 .summary-divider {
     font-size: min(4dvh, 4dvw);
     opacity: 0.3;
@@ -121,17 +130,12 @@
 .wallos-right {
     display: flex;
     flex-direction: column;
-    gap: 0.8dvh;
     width: 38%;
     flex-shrink: 0;
 }
 
 .chart-title {
-    font-size: min(1.8dvh, 1.8dvw);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.6;
-    flex-shrink: 0;
+    display: none;
 }
 
 .cost-chart {
@@ -147,7 +151,10 @@
     gap: 1.5dvw;
     flex: 1;
     border-bottom: 1px solid currentColor;
-    opacity: 0.9;
+}
+
+.chart-row:last-child {
+    border-bottom: none;
 }
 
 .chart-bar-wrap {
