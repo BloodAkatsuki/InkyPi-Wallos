@@ -32,6 +32,7 @@
         {% set max_price = subscriptions | map(attribute='price') | max | default(1) %}
         {% for sub in subscriptions %}
         <div class="sub-row">
+            <div class="sub-left">
             <span class="sub-name">{{ sub.name }}</span>
             <span class="sub-due
                 {%- if sub.days_until is not none and sub.days_until <= 3 %} due-soon
@@ -43,6 +44,7 @@
                 {%- else %}{{ sub.days_until }}D
                 {%- endif %}
             </span>
+            </div>
             <div class="chart-bar-outer">
                 <div class="chart-bar-bg"></div>
                 <div class="chart-bar-fill" style="width: {{ [(sub.price / max_price * 100)|round, 2]|max }}%"></div>
