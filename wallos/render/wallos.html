@@ -9,13 +9,24 @@
 </style>
 <div class="wallos-dashboard">
 
-    <!-- Header: Titel + Monatskosten -->
+    <!-- Header -->
     <div class="wallos-header">
         <span class="wallos-title">Wallos</span>
-        {% if show_monthly_cost and monthly_cost is not none %}
-            <span class="wallos-cost">~ {{ monthly_cost }} / Monat</span>
-        {% endif %}
     </div>
+
+    <!-- Summary: Monatskosten -->
+    {% if show_monthly_cost and monthly_cost is not none %}
+    <div class="wallos-summary">
+        <div class="summary-block">
+            <span class="summary-value">{{ monthly_cost }}</span>
+            <span class="summary-label">Monatliche Kosten</span>
+        </div>
+        <div class="summary-block">
+            <span class="summary-value">{{ subscriptions | length }}</span>
+            <span class="summary-label">Abonnements</span>
+        </div>
+    </div>
+    {% endif %}
 
     <!-- Abonnementliste -->
     <div class="wallos-list">
@@ -23,7 +34,7 @@
         <div class="sub-row">
             <span class="sub-name">
                 {% if show_logos and sub.logo_url %}
-                    <img class="sub-logo" src="{{ sub.logo_url }}" alt="">
+                <img class="sub-logo" src="{{ sub.logo_url }}" alt="">
                 {% endif %}
                 {{ sub.name }}
             </span>
@@ -32,19 +43,15 @@
                 {%- if sub.days_until is not none and sub.days_until <= 3 %} due-soon
                 {%- elif sub.days_until is not none and sub.days_until <= 7 %} due-week
                 {%- endif %}">
-                {% if sub.days_until is none %}
-                    –
-                {% elif sub.days_until == 0 %}
-                    heute
-                {% elif sub.days_until == 1 %}
-                    morgen
-                {% else %}
-                    in {{ sub.days_until }} Tagen
+                {% if sub.days_until is none %}–
+                {% elif sub.days_until == 0 %}heute
+                {% elif sub.days_until == 1 %}morgen
+                {% else %}in {{ sub.days_until }} Tagen
                 {% endif %}
             </span>
         </div>
         {% else %}
-        <div class="sub-empty">Keine aktiven Abonnements gefunden.</div>
+        <div class="sub-empty">Keine aktiven Abonnements.</div>
         {% endfor %}
     </div>
 

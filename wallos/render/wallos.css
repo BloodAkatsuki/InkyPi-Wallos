@@ -4,32 +4,52 @@
     width: 100%;
     height: 100%;
     font-family: "Jost";
-    padding: 2.5dvh 3.5dvw;
-    gap: 1.5dvh;
+    padding: 2dvh 3dvw;
+    gap: 0;
     box-sizing: border-box;
 }
 
 /* ── Header ── */
 .wallos-header {
     display: flex;
-    align-items: baseline;
-    gap: 2dvw;
+    align-items: center;
     border-bottom: 2px solid currentColor;
-    padding-bottom: 1.2dvh;
+    padding-bottom: 1dvh;
     flex-shrink: 0;
 }
 
 .wallos-title {
-    font-size: min(4.5dvh, 4.5dvw);
-    font-weight: 700;
+    font-size: min(4dvh, 4dvw);
+    font-weight: bold;
     letter-spacing: 0.03em;
 }
 
-.wallos-cost {
-    font-size: min(2.8dvh, 2.8dvw);
-    opacity: 0.55;
-    margin-left: auto;
-    font-weight: 400;
+/* ── Summary ── */
+.wallos-summary {
+    display: flex;
+    gap: 5dvw;
+    padding: 1.5dvh 0 1.5dvh 0;
+    border-bottom: 1px solid currentColor;
+    flex-shrink: 0;
+}
+
+.summary-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-value {
+    font-size: min(5dvh, 5dvw);
+    font-weight: bold;
+    line-height: 1;
+}
+
+.summary-label {
+    font-size: min(1.8dvh, 1.8dvw);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+    margin-top: 0.3dvh;
 }
 
 /* ── Subscription list ── */
@@ -38,14 +58,15 @@
     flex-direction: column;
     flex: 1;
     justify-content: space-around;
+    padding-top: 0.5dvh;
 }
 
 .sub-row {
     display: flex;
     align-items: center;
     gap: 2dvw;
-    padding: 0.8dvh 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5dvh 0;
 }
 
 .sub-row:last-child {
@@ -56,37 +77,39 @@
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 1.5dvw;
+    gap: 1.2dvw;
+    font-size: min(2.8dvh, 2.8dvw);
+    font-weight: 500;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: min(3dvh, 3dvw);
-    font-weight: 500;
 }
 
 .sub-logo {
-    width: min(4dvh, 4dvw);
-    height: min(4dvh, 4dvw);
+    width: min(3.5dvh, 3.5dvw);
+    height: min(3.5dvh, 3.5dvw);
     object-fit: contain;
     flex-shrink: 0;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 .sub-price {
-    white-space: nowrap;
-    font-size: min(3dvh, 3dvw);
+    font-size: min(2.8dvh, 2.8dvw);
+    font-weight: bold;
     font-variant-numeric: tabular-nums;
-    font-weight: 600;
-    min-width: 10dvw;
+    white-space: nowrap;
+    min-width: 9dvw;
     text-align: right;
 }
 
 .sub-due {
+    font-size: min(2.2dvh, 2.2dvw);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
     white-space: nowrap;
-    font-size: min(2.6dvh, 2.6dvw);
-    opacity: 0.55;
+    min-width: 11dvw;
     text-align: right;
-    min-width: 10dvw;
 }
 
 .due-soon {
@@ -103,16 +126,16 @@
 
 .sub-empty {
     font-size: min(2.5dvh, 2.5dvw);
-    opacity: 0.55;
+    opacity: 0.5;
     text-align: center;
 }
 
 /* ── Portrait layout ── */
 @media (max-aspect-ratio: 1) {
-    .wallos-title  { font-size: min(5.5dvh, 5.5dvw); }
-    .wallos-cost   { font-size: min(3.5dvh, 3.5dvw); }
-    .sub-name      { font-size: min(4dvh, 4dvw); }
-    .sub-price     { font-size: min(4dvh, 4dvw); min-width: 14dvw; }
-    .sub-due       { font-size: min(3.5dvh, 3.5dvw); min-width: 14dvw; }
-    .sub-logo      { width: min(5dvh, 5dvw); height: min(5dvh, 5dvw); }
+    .summary-value { font-size: min(6dvh, 6dvw); }
+    .summary-label { font-size: min(2.5dvh, 2.5dvw); }
+    .sub-name      { font-size: min(3.5dvh, 3.5dvw); }
+    .sub-price     { font-size: min(3.5dvh, 3.5dvw); min-width: 14dvw; }
+    .sub-due       { font-size: min(3dvh, 3dvw); min-width: 16dvw; }
+    .sub-logo      { width: min(4.5dvh, 4.5dvw); height: min(4.5dvh, 4.5dvw); }
 }
