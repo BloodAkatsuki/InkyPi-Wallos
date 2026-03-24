@@ -51,6 +51,7 @@ class Wallos(BasePlugin):
             "show_logos": show_logos,
             "color_due_soon": color_due_soon,
             "color_due_week": color_due_week,
+            "plugin_settings": settings,
         }
 
         return self.render_image(dimensions, "wallos.html", "wallos.css", template_params)
